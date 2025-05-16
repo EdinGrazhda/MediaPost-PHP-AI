@@ -1,7 +1,7 @@
 <?php
 include('../db_connection/index.php');
 session_start();
-include_once('../src/register/register.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +107,7 @@ include_once('../src/register/register.php');
 </head>
 <body>
     <div class="login-container">        <h1>MediaSociale</h1>
-        <form action="../src/login/register.php" method="POST">
+        <form action="../src/register/register.php" method="POST">
             <div class="form-group">
                 <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter your full name" required>
@@ -115,16 +115,15 @@ include_once('../src/register/register.php');
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-            <div class="form-group">  
+            </div>            <div class="form-group">  
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
             </div>
             <div class="form-group">  
-                <label for="password">Password</label>
-                <input type="password" id="password" name="confirmpassword" placeholder="Enter confirm password" required>
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Enter confirm password" required>
             </div>
-            <button type="submit" name="submit" class="register_btn">Sign In</button>
+            <button type="submit" name="submit" class="login-btn">Register</button>
         </form>
         <div class="register-link">
             <p>Do have an account? <a href="index.php">Sign In</a></p>
