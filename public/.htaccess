@@ -1,0 +1,38 @@
+# Prevent directory listing
+Options -Indexes
+
+# Protect the htaccess file
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Set custom error page
+ErrorDocument 404 /MediaSociale/public/404.php
+
+# Protect sensitive PHP files from direct access
+<FilesMatch "^(panel)\.php$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# But allow access through the server
+<FilesMatch "^(panel)\.php$">
+  Order Deny,Allow
+  Allow from 127.0.0.1
+  Allow from ::1
+</FilesMatch>
+
+# Enable PHP error handling
+php_flag display_startup_errors off
+php_flag display_errors off
+php_flag html_errors off
+php_value docref_root 0
+php_value docref_ext 0
+
+# Protect against common security threats
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>
