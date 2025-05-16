@@ -1,5 +1,4 @@
-<?php
-
+<?php   
 
 $user="root";
 $pass="";
@@ -13,6 +12,4 @@ try {
 } catch (PDOException $e) {
     die("Connection failed: " . $e->getMessage());
 }
-
-
- ?>
+?>
