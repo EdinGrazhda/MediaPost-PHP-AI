@@ -4,10 +4,10 @@ include_once('../../db_connection/index.php');
 
 $errors = array();
 
-if (isset($_POST['register_btn'])) {
+if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $password = $_POST['password'];
-    $confirmPassword = $_POST['confirmPassword'];
+    $confirmPassword = isset($_POST['confirmPassword']) ? $_POST['confirmPassword'] : '';
     $email = $_POST['email'];
 
     if (empty($name)) {
@@ -51,12 +51,13 @@ if (isset($_POST['register_btn'])) {
 
         //delete $hashedPassword when we want to see the password and change  $sqlQuery->bindParam(":password", $hashedPassword); to   $sqlQuery->bindParam(":password", $password);
 
-        $sql = "INSERT INTO users (name, password, email) VALUES (:name, :password, :email)";
+        $sql = "INSERT INTO users (name, password, email,confirmPassword) VALUES (:name, :password, :email, :confirmPassword)";
         $sqlQuery = $conn->prepare($sql);
 
         $sqlQuery->bindParam(":name", $name);
         $sqlQuery->bindParam(":password", $hashedPassword);
         $sqlQuery->bindParam(":email", $email);
+        $sqlQuery->bindParam(":confirmPassword", $confirmPassword);
 
         $sqlQuery->execute();
 
